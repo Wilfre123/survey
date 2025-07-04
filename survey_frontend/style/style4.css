@@ -1,0 +1,306 @@
+:root {
+  --sidebar-width: 220px;
+  --sidebar-collapsed-width: 60px;
+  --green-gradient: linear-gradient(180deg, #064d1d 0%, #0a5f25 100%);
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #eaf6ef;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.form-label{
+ font-size: 11px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--green-gradient);
+  padding-top: 60px;
+  color: #fff;
+  transition: all 0.3s ease;
+  z-index: 1040;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar a {
+  color: rgba(255, 255, 255, 0.9); /* Default color */
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Prevent underline */
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.sidebar a i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Ensure consistent color for all link states */
+.sidebar a:link, /* Unvisited link */
+.sidebar a:visited { /* Visited link */
+  color: rgba(255, 255, 255, 0.9); /* Set color to white */
+  text-decoration: none; /* Remove any underline */
+}
+
+.sidebar a:hover, /* Hovered link */
+.sidebar a:active { /* Active link */
+  background: #fff;
+  color: #064d1d; /* Set color on hover or active */
+  text-decoration: none; /* Ensure no underline on hover */
+}
+
+.sidebar.collapsed a span {
+  display: none;
+}
+
+.sidebar.collapsed a {
+  justify-content: center;
+}
+
+/* Top nav */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1050;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #064d1d;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.content {
+  margin-left: var(--sidebar-width);
+  margin-top: 60px;
+  padding: 1.5rem;
+  transition: margin 0.3s ease;
+}
+
+/* When sidebar is collapsed (desktop) */
+.sidebar.collapsed ~ .content {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+/* Form / Table */
+.form-container, .table-container {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,100,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover, .table-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,100,0,0.15);
+}
+
+.btn-dark-green {
+  background: linear-gradient(90deg, #064d1d, #0a5f25);
+  color: white;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.btn-dark-green:hover {
+  color: white;
+  background: linear-gradient(90deg, #0a5f25, #064d1d);
+}
+
+/* Checkmark animation */
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  stroke-width: 3;
+  stroke: #fff;
+  fill: none;
+  box-shadow: inset 0 0 0 #7ac142;
+  border-radius: 50%;
+  animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke: #7ac142;
+  animation: stroke 0.6s forwards;
+}
+
+.checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s 0.6s forwards;
+}
+
+@keyframes stroke { to { stroke-dashoffset: 0; } }
+@keyframes scale { 50% { transform: scale(1.1); } }
+@keyframes fill { to { box-shadow: inset 0 0 0 30px #7ac142; } }
+
+/* Mobile View */
+@media (max-width: 576px) {
+  .form-container, .table-container {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    transition: width 0.3s ease;
+  }
+
+  .sidebar.collapsed {
+    width: var(--sidebar-collapsed-width) !important;
+  }
+
+  .sidebar:not(.collapsed) {
+    width: var(--sidebar-width) !important;
+  }
+
+  .sidebar.collapsed a span {
+    display: none !important;
+  }
+
+  .sidebar:not(.collapsed) a span {
+    display: inline !important;
+  }
+
+  .content {
+    margin-left: var(--sidebar-collapsed-width) !important;
+    transition: none !important;
+  }
+
+  .modal-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    max-width: 90vw !important;
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+/* table and div design from index.html */
+
+ #coordinatesTable {
+      font-size: 10px;
+    }
+     #div1 {
+      display: block; /* show by default */
+    }
+
+    #div2 {
+      display: none; /* hidden on page load */
+    }
+    /* Reset some defaults */
+  * {
+    box-sizing: border-box;
+  }
+
+
+   h2 {
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #222;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #555;
+    font-size: 14px;
+  }
+
+  .table1 {
+    border-collapse: collapse;
+  width: 100%;
+
+    background-color: white;
+  
+  }
+
+  thead {
+    background-color: #2E8B57;
+    color: white;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+    text-align: left;
+    min-width: 120px;
+   font-size: 11px;
+  }
+
+  td[contenteditable="true"] {
+    background-color: #f9fbff;
+    cursor: text;
+    outline: none;
+  }
+
+  td[contenteditable="true"]:focus {
+    background-color: #e7f0fe;
+    box-shadow: inset 0 0 0 2px #4a90e2;
+  }
+
+  tbody tr:hover td {
+    background-color: #f0f6ff;
+  }
+
+ 
+  @media (max-width: 600px) {
+    table {
+      max-width: 90px;
+    }
+    th, td {
+      padding: 10px 12px;
+    }
+   
+  }
+
+  .table_div{
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+  }
+  .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
